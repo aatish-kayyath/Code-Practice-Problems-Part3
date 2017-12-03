@@ -1,0 +1,50 @@
+<htm1>
+<tit1e>ca1cu1ator‘</tit1e>
+<head><h1><center‘>Basic CalCulator'</center‘></h1></head>
+<body>
+<center>
+<form action="ca1cu1ator'.jsp" method="get">
+<1abe1 For‘="num1"><b>Number' 1</b></1abe1>
+<input type="text" name ="num1"><br'><br'>
+<1abe1 For = "numZ"><b>Number' 2</b></1abe1>
+<input type="text" name="numZ"><br'><br'>
+<input type ="r'adio" name = "r'1" va1ue="Add">+
+<input type = "radio" name = "r‘1" va1ue="Sub">-<br'>
+<input type="r'adio" name="r'1" value ="mu1">*
+<input type = "radio" name="r'1" va1ue="div">/<br'><br‘>
+<input type="submit" va1ue="submit">
+</center'>
+</body>
+</htm1>
+<htm1>
+<tit1e>ca1cu1atcr</tit1e>
+<head></head>
+<body>
+<%@page 1anguage="java"%>
+<%
+int numl = Integer_parseInt(request.getParameter("num1"));
+int numZ = Integer_parseInt(request.getParameter("numZ"));
+String operation = request.getParameter(“r1“);
+if(operation.equa1s(“Add")){
+int add=num1+num2;
+out.print1n("Addition is: "+add);
+}
+else if(operation.equa1s(“Sub")){
+int sub=num1-num2;
+out.print1n("Substraction is: “+sub);
+}
+else if(operation.equa1s(“mu1")){
+int mu1=num1*num2;
+out.print1n("mu1tip1ication is: "+mu1);
+}
+else if(operation.equa1s(“div"))
+{
+int div = numl/num2;
+if(num1>=numZ)
+out.print1n("division is: "+div);
+else
+out.print1n("The division cannot be performed");
+}
+%>
+</body>
+</htm1>

@@ -1,0 +1,60 @@
+import java.sql.*;
+import java.util.Scanner;
+public class jdbcpreparedstmt{
+    public static void main(String args[]){
+        System.out.println("MySQL Connect Example.");
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn =
+DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb1","root","");
+            System.out.println("Connected to the database");
+            PreparedStatement ps=conn.prepareStatement("insert into
+student values(?,?)");
+            String query = "Select * FROM student";
+
+            Scanner keyboard=new Scanner(System.in);
+            do{
+                System.out.println("enter usn:");
+                String myusn=keyboard.nextLine();
+                System.out.println("enter name:");
+                String myname=keyboard.nextLine();
+
+                ps.setString(1,myusn);
+                ps.setString(2,myname);
+
+                int i=ps.executeUpdate();
+                System.out.println(i+" records added");
+                System.out.println("Do you want to continue: y/n");
+                String s=keyboard.nextLine();
+                if(s.startsWith("n")){
+                    break;
+                }
+            }while(true);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next())
+            {
+                String f1 = rs.getString(1);
+                String f2 = rs.getString(2);
+                System.out.println(f1+"  "+f2);
+
+            }
+            conn.close();
+            System.out.println("Disconnected from database");
+            }
+
+            catch(ClassNotFoundException e) {
+            e.printStackTrace();
+            }
+
+            catch(SQLException e) {
+            e.printStackTrace();
+            }
+
+            catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }}
